@@ -15,6 +15,7 @@ function Question(props) {
               type="radio"
               key={i}
               value={value}
+              name="binary"
             />
             <p style={{ display: "inline-block" }}>{value}</p>
           </div>

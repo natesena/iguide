@@ -5,9 +5,9 @@ import { Questions } from "../static/Questions";
 function ImplementationQuestionnaire() {
   return (
     <div>
-      {[...Questions].map((item, i) => (
+      {[...Questions].map((questionData, i) => (
         <div key={i}>
-          <Question data={item}></Question>
+          <Question data={questionData}></Question>
         </div>
       ))}
     </div>
