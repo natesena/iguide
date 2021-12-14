@@ -22,6 +22,23 @@ function Question(props) {
         ))}
       </div>
     );
+  } else if (props.data.answerType === "range") {
+    answerInput = (
+      <div>
+        <p style={{ display: "inline-block" }}>{props.data.answers[0]}</p>
+        <div style={{ display: "inline-block" }}>
+          <input
+            id="typeinp"
+            type="range"
+            min="0"
+            max="100"
+            defaultValue="50"
+            step="1"
+          />
+        </div>
+        <p style={{ display: "inline-block" }}>{props.data.answers[1]}</p>
+      </div>
+    );
   }
   return (
     <div>
