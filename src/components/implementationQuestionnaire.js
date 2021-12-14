@@ -7,7 +7,7 @@ function ImplementationQuestionnaire() {
     <div>
       {[...Questions].map((questionData, i) => (
         <div key={i}>
-          <Question data={questionData}></Question>
+          <Question data={questionData} number={i}></Question>
         </div>
       ))}
     </div>

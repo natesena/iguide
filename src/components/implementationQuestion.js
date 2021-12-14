@@ -5,7 +5,7 @@ function Question(props) {
   console.log("props: ", props);
   if (props.data.answerType === "input") {
     answerInput = <input></input>;
-  } else if (props.data.answerType === "binary") {
+  } else if (props.data.answerType === "radio") {
     answerInput = (
       <div>
         {[...props.data.answers].map((value, i) => (
@@ -26,7 +26,7 @@ function Question(props) {
   return (
     <div>
       <h3>
-        {props.data.number}: {props.data.question}
+        {props.number + 1}: {props.data.question}
       </h3>
       {answerInput}
     </div>
