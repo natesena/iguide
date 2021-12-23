@@ -20,11 +20,6 @@ export const Questions = [
     answerLimit: "1",
   },
   {
-    question: "URL(s) for inclusion in this project?",
-    answerType: "input",
-    answerLimit: "none",
-  },
-  {
     question: "Percentage Desktop vs Mobile?",
     answerType: "range",
     range: [0, 100],

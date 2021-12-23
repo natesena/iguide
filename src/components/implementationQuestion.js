@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Question(props) {
+  const [count, setCount] = useState([""]);
   var answerInput;
   console.log("props: ", props);
   if (props.data.answerType === "input") {
-    answerInput = <input></input>;
+    if (props.data.answerLimit === "none") {
+      answerInput = (
+        <div>
+          {[...count].map((x, i) => {
+            <div>
+              <input></input>
+              <button onClick={() => setCount(...count, "")}>+</button>
+            </div>;
+          })}
+        </div>
+      );
+    } else {
+      answerInput = <input></input>;
+    }
   } else if (props.data.answerType === "radio") {
     answerInput = (
       <div>
