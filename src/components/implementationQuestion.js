@@ -1,29 +1,44 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function Question(props) {
   const [count, setCount] = useState([""]);
+
   var answerInput;
-  console.log("props: ", props);
   if (props.data.answerType === "input") {
     if (props.data.answerLimit === "none") {
-      answerInput = (
-        <div>
-          {[...count].map((x, i) => {
-            <div>
-              <input></input>
-              <button onClick={() => setCount(...count, "")}>+</button>
-            </div>;
-          })}
-        </div>
-      );
+      const inputs = count.map((x, i) => {
+        const uuidKey = uuidv4();
+        return (
+          <div key={uuidKey}>
+            <input
+              value={x}
+              onChange={(e) => {
+                let updatedInputs = count.map((value, index) => {
+                  console.log("index: ", index, " i: ", i);
+                  return (index = i ? e.target.value : "blah");
+                });
+                setCount(updatedInputs);
+              }}
+            />
+            {
+              (i = count.length ? (
+                <button onClick={() => setCount([...count, ""])}>+</button>
+              ) : null)
+            }
+          </div>
+        );
+      });
+
+      answerInput = <div>{inputs}</div>;
     } else {
-      answerInput = <input></input>;
+      answerInput = <input />;
     }
   } else if (props.data.answerType === "radio") {
     answerInput = (
       <div>
         {[...props.data.answers].map((value, i) => (
-          <div style={{ display: "inline-block" }}>
+          <div style={{ display: "inline-block" }} key={i}>
             <input
               style={{ display: "inline-block" }}
               type="radio"
