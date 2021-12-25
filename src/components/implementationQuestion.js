@@ -24,10 +24,10 @@ function Question(props) {
               value={input.value}
               onChange={(e) => {
                 let updatedInputs = inputs.map((nput, index) => {
-                  console.log("updated key: ", nput.key);
-                  return nput.key == uuidKey
+                  console.log("nput.key: ", nput.key, "uuidKey: ", uuidKey);
+                  return nput.key === input.key
                     ? { value: e.target.value, key: nput.key }
-                    : { value: "error", key: nput.key };
+                    : { value: nput.value, key: nput.key };
                 });
                 setInputs(updatedInputs);
               }}
