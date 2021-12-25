@@ -2,35 +2,48 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function Question(props) {
-  const [count, setCount] = useState([""]);
+  const [inputs, setInputs] = useState([{ value: "" }]);
 
   var answerInput;
   if (props.data.answerType === "input") {
     if (props.data.answerLimit === "none") {
-      const inputs = count.map((x, i) => {
+      const inputBlock = inputs.map((input, i) => {
         const uuidKey = uuidv4();
+        input.key = input.key ? input.key : uuidKey;
+        console.log(
+          "input: ",
+          input,
+          "inputs.length: ",
+          inputs.length,
+          " i: ",
+          i
+        );
         return (
           <div key={uuidKey}>
             <input
-              value={x}
+              value={input.value}
               onChange={(e) => {
-                let updatedInputs = count.map((value, index) => {
-                  console.log("index: ", index, " i: ", i);
-                  return (index = i ? e.target.value : "blah");
+                let updatedInputs = inputs.map((nput, index) => {
+                  console.log("updated key: ", nput.key);
+                  return nput.key == uuidKey
+                    ? { value: e.target.value, key: nput.key }
+                    : { value: "error", key: nput.key };
                 });
-                setCount(updatedInputs);
+                setInputs(updatedInputs);
               }}
             />
-            {
-              (i = count.length ? (
-                <button onClick={() => setCount([...count, ""])}>+</button>
-              ) : null)
-            }
           </div>
         );
       });
 
-      answerInput = <div>{inputs}</div>;
+      answerInput = (
+        <div>
+          {inputBlock}
+          <button onClick={() => setInputs([...inputs, { value: "" }])}>
+            +
+          </button>
+        </div>
+      );
     } else {
       answerInput = <input />;
     }
